@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - EdgeCam Pro</title>
+  <style>
+    :root {
+      --bg: #06121f;
+      --bg-2: #0b1d31;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #f8fbff;
+      --muted: #b7c7db;
+      --primary: #4da3ff;
+      --primary-2: #7c5cff;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --radius-sm: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(77, 163, 255, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(124, 92, 255, 0.18), transparent 30%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.75;
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 10s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 340px;
+      height: 340px;
+      background: #4da3ff;
+      top: -80px;
+      left: -60px;
+    }
+
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      background: #7c5cff;
+      right: -80px;
+      top: 120px;
+      animation-delay: 2s;
+    }
+
+    .orb-3 {
+      width: 260px;
+      height: 260px;
+      background: #00c2ff;
+      left: 20%;
+      bottom: -80px;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+      100% {
+        transform: translateY(25px) translateX(18px) scale(1.08);
+      }
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      z-index: 1000;
+      box-shadow: 0 0 14px rgba(77, 163, 255, 0.6);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 68vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px 40px;
+      position: relative;
+    }
+
+    .hero-card {
+      max-width: 1100px;
+      width: 100%;
+      padding: 56px;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      animation: heroEntrance 1s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.10), transparent 35%, transparent 65%, rgba(255,255,255,0.06));
+      pointer-events: none;
+    }
+
+    @keyframes heroEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+      animation: pulseDot 1.8s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.04;
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #ffffff, #9fd0ff, #b9a7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+
+    .hero-btn.primary {
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 10px 24px rgba(77, 163, 255, 0.28);
+    }
+
+    .hero-btn.secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--text);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .content {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+    }
+
+    .section-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 34px 30px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s ease, transform .8s ease;
+      overflow: hidden;
+    }
+
+    .section-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--primary-2));
+      border-radius: 8px;
+    }
+
+    .section-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .section-card h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .section-card ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .section-card li {
+      margin-bottom: 8px;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .support-tile {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .support-tile:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .support-tile h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .support-tile p {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+
+    .support-tile a {
+      color: #9fd0ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .support-tile a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight-box {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(77, 163, 255, 0.10);
+      border: 1px solid rgba(77, 163, 255, 0.18);
+      color: #e7f3ff;
+    }
+
+    .highlight-success {
+      background: rgba(34, 197, 94, 0.10);
+      border-color: rgba(34, 197, 94, 0.18);
+    }
+
+    .highlight-warning {
+      background: rgba(245, 158, 11, 0.10);
+      border-color: rgba(245, 158, 11, 0.18);
+    }
+
+    .faq-item {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #9fd0ff;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .floating-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    .floating-nav a {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .floating-nav a:hover {
+      transform: scale(1.2);
+      background: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .hero-card {
+        padding: 34px 24px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section-card {
+        padding: 26px 22px;
+      }
+
+      .section-card h2 {
+        font-size: 24px;
+      }
+
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding-top: 50px;
+      }
+
+      .hero-card {
+        padding: 28px 18px;
+        border-radius: 24px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .section-card {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="floating-nav">
+    <a href="#contact" aria-label="Contact"></a>
+    <a href="#help" aria-label="Help"></a>
+    <a href="#faq" aria-label="FAQ"></a>
+    <a href="#bugs" aria-label="Bug reports"></a>
+  </div>
+
+  <div class="page">
+    <section class="hero" id="contact">
+      <div class="hero-card">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Fast help for EdgeCam Pro users
+        </div>
+
+        <h1>Support for <span>EdgeCam Pro</span></h1>
+        <p>
+          Need help with recording, playback, settings, missing videos, or browser permissions?
+          We’re here to help you resolve issues quickly and keep your workflow smooth.
+        </p>
+
+        <div class="hero-actions">
+          <a class="hero-btn primary" href="mailto:support@edgecampro.app">Contact Support</a>
+          <a class="hero-btn secondary" href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+
+    <main class="content">
+      <section class="section-card reveal">
+        <h2>Contact Us</h2>
+        <p>
+          For technical support, bug reports, feature requests, or extension-related questions,
+          contact us at:
+        </p>
+        <div class="support-grid">
+          <div class="support-tile">
+            <h3>Email Support</h3>
+            <p>Reach out directly for help and troubleshooting.</p>
+            <a href="mailto:edgecamprosupport@gmail.com">edgecamprosupport@gmail.com</a>
+          </div>
+
+          <div class="support-tile">
+            <h3>Issue Details</h3>
+            <p>
+              Please include your browser version, operating system, and a short description of the problem.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card reveal" id="help">
+        <h2>Quick Help</h2>
+
+        <div class="faq-item">
+          <h3>Why is recording not starting?</h3>
+          <p>
+            Make sure you are on a normal website page, not an internal browser page such as
+            <code>edge://</code> or <code>chrome://</code>. Also confirm that screen, microphone,
+            and camera permissions were granted if needed.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Why does a recording appear in history but not play?</h3>
+          <p>
+            This can happen if metadata exists but the local video file is missing. Use the
+            <strong>Repair Missing</strong> button in the dashboard to clean broken entries.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Where are recordings stored?</h3>
+          <p>
+            Recordings are stored locally in your browser profile using extension storage and IndexedDB.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Does EdgeCam Pro upload my recordings automatically?</h3>
+          <p>
+            No. Recordings are stored locally by default and are not uploaded automatically without your explicit action.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-card reveal" id="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>Which browsers are supported?</h3>
+          <p>
+            EdgeCam Pro is built primarily for Microsoft Edge. Other Chromium-based browsers may support most features, but Microsoft Edge is the main target platform.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I record screen and webcam at the same time?</h3>
+          <p>
+            Yes. EdgeCam Pro supports screen + webcam combined recording with webcam overlay.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I record system audio and microphone together?</h3>
+          <p>
+            Yes, depending on browser and OS support. You can enable both sources from the popup or settings.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I delete old recordings?</h3>
+          <p>
+            Yes. You can remove individual recordings or bulk-delete entries from the dashboard.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-card reveal" id="bugs">
+        <h2>Bug Reports</h2>
+        <p>
+          If you report a bug, please include as much detail as possible so we can help faster.
+        </p>
+        <ul>
+          <li>Browser name and version</li>
+          <li>Operating system</li>
+          <li>What type of recording you attempted</li>
+          <li>What happened instead of the expected result</li>
+          <li>Whether screen, webcam, or audio permissions were enabled</li>
+          <li>Any visible error messages</li>
+        </ul>
+
+        <div class="highlight-box highlight-warning">
+          Tip: If a recording appears in history but will not play, mention whether it was created before or after the latest extension update.
+        </div>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>Feature Requests</h2>
+        <p>
+          We welcome ideas for improving EdgeCam Pro, including editing tools, cloud uploads,
+          advanced AI suggestions, and productivity workflows.
+        </p>
+
+        <div class="highlight-box highlight-success">
+          Send feature requests to <strong>support@edgecampro.app</strong> with the subject line
+          “Feature Request”.
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2024 EdgeCam Pro. All rights reserved.</p>
+      <p>
+        Read our <a href="privacy.html">Privacy Policy</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById('progressBar');
+
+    function updateProgressBar() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    }
+
+    window.addEventListener('scroll', updateProgressBar);
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    reveals.forEach(section => observer.observe(section));
+
+    updateProgressBar();
+  </script>
+</body>
+</html>

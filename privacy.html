@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - EdgeCam Pro</title>
+  <style>
+    :root {
+      --bg: #06121f;
+      --bg-2: #0b1d31;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #f8fbff;
+      --muted: #b7c7db;
+      --primary: #4da3ff;
+      --primary-2: #7c5cff;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --radius-sm: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(77, 163, 255, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(124, 92, 255, 0.18), transparent 30%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.75;
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 10s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 340px;
+      height: 340px;
+      background: #4da3ff;
+      top: -80px;
+      left: -60px;
+    }
+
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      background: #7c5cff;
+      right: -80px;
+      top: 120px;
+      animation-delay: 2s;
+    }
+
+    .orb-3 {
+      width: 260px;
+      height: 260px;
+      background: #00c2ff;
+      left: 20%;
+      bottom: -80px;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+      100% {
+        transform: translateY(25px) translateX(18px) scale(1.08);
+      }
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      z-index: 1000;
+      box-shadow: 0 0 14px rgba(77, 163, 255, 0.6);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 72vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px 40px;
+      position: relative;
+    }
+
+    .hero-card {
+      max-width: 1100px;
+      width: 100%;
+      padding: 56px;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      animation: heroEntrance 1s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.10), transparent 35%, transparent 65%, rgba(255,255,255,0.06));
+      pointer-events: none;
+    }
+
+    @keyframes heroEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+      animation: pulseDot 1.8s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.04;
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #ffffff, #9fd0ff, #b9a7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 24px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .meta-chip {
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+
+    .meta-chip:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .nav-anchor-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 36px;
+    }
+
+    .scroll-down {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      transition: all .25s ease;
+    }
+
+    .scroll-down:hover {
+      color: white;
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .content {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+    }
+
+    .section-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 34px 30px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s ease, transform .8s ease;
+      overflow: hidden;
+    }
+
+    .section-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--primary-2));
+      border-radius: 8px;
+    }
+
+    .section-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .section-card h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .section-card ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .section-card li {
+      margin-bottom: 8px;
+    }
+
+    .highlight-box {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(77, 163, 255, 0.10);
+      border: 1px solid rgba(77, 163, 255, 0.18);
+      color: #e7f3ff;
+    }
+
+    .highlight-success {
+      background: rgba(34, 197, 94, 0.10);
+      border-color: rgba(34, 197, 94, 0.18);
+    }
+
+    .highlight-warning {
+      background: rgba(245, 158, 11, 0.10);
+      border-color: rgba(245, 158, 11, 0.18);
+    }
+
+    .footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #9fd0ff;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .floating-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    .floating-nav a {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .floating-nav a:hover {
+      transform: scale(1.2);
+      background: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .hero-card {
+        padding: 34px 24px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section-card {
+        padding: 26px 22px;
+      }
+
+      .section-card h2 {
+        font-size: 24px;
+      }
+
+      .floating-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding-top: 50px;
+      }
+
+      .hero-card {
+        padding: 28px 18px;
+        border-radius: 24px;
+      }
+
+      .hero-meta {
+        flex-direction: column;
+      }
+
+      .meta-chip {
+        width: 100%;
+      }
+
+      .section-card {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="floating-nav">
+    <a href="#intro" aria-label="Intro"></a>
+    <a href="#storage" aria-label="Storage"></a>
+    <a href="#permissions" aria-label="Permissions"></a>
+    <a href="#security" aria-label="Security"></a>
+    <a href="#contact" aria-label="Contact"></a>
+  </div>
+
+  <div class="page">
+    <section class="hero" id="intro">
+      <div class="hero-card">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Privacy-first browser recording experience
+        </div>
+
+        <h1>Privacy Policy for <span>EdgeCam Pro</span></h1>
+        <p>
+          EdgeCam Pro is designed with privacy at its core. Your recordings stay under your control,
+          stored locally by default, and are never uploaded without your explicit action.
+        </p>
+
+        <div class="hero-meta">
+          <div class="meta-chip">Local-first video storage</div>
+          <div class="meta-chip">No automatic uploads</div>
+          <div class="meta-chip">Explicit permission-based access</div>
+        </div>
+
+        <div class="nav-anchor-wrap">
+          <a href="#policy" class="scroll-down">Read Full Policy ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <main class="content" id="policy">
+      <section class="section-card reveal">
+        <h2>1. Overview</h2>
+        <p>
+          EdgeCam Pro – Smart Browser Video Recorder (“EdgeCam Pro”, “we”, “our”, or “us”)
+          provides browser-based video recording features for Microsoft Edge and compatible browsers.
+        </p>
+        <p>
+          This Privacy Policy explains what information the extension can access, how recordings are stored,
+          and how your data is handled.
+        </p>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>2. What We Access</h2>
+        <p>
+          EdgeCam Pro only accesses data and devices that are necessary for the features you explicitly use.
+        </p>
+        <ul>
+          <li>Your screen, tab, or application window for screen recording</li>
+          <li>Your webcam, if webcam recording is enabled</li>
+          <li>Your microphone, if microphone recording is enabled</li>
+          <li>System or tab audio, if selected by you</li>
+          <li>Basic page information such as URL or title when needed for bug reporting or title suggestions</li>
+        </ul>
+      </section>
+
+      <section class="section-card reveal" id="storage">
+        <h2>3. Local Storage of Recordings</h2>
+        <p>
+          By default, recordings and related metadata are stored locally within your browser profile using
+          browser storage technologies such as IndexedDB and extension storage.
+        </p>
+        <div class="highlight-box highlight-success">
+          Your video recordings are not automatically uploaded to any remote server.
+        </div>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>4. Uploads and Sharing</h2>
+        <p>
+          EdgeCam Pro only uploads or shares content when you explicitly request it.
+        </p>
+        <p>
+          If optional cloud upload or public sharing features are made available, they will only be triggered
+          after a clear user action.
+        </p>
+      </section>
+
+      <section class="section-card reveal" id="permissions">
+        <h2>5. Browser Permissions</h2>
+        <p>EdgeCam Pro may request browser permissions such as:</p>
+        <ul>
+          <li><strong>desktopCapture</strong> – used to record your screen, tab, or window</li>
+          <li><strong>tabs / activeTab</strong> – used to detect the current page for recording actions</li>
+          <li><strong>storage</strong> – used to save settings and local metadata</li>
+          <li><strong>downloads</strong> – used so you can download your own recordings</li>
+          <li><strong>scripting</strong> – used to inject the recording controls into pages</li>
+        </ul>
+        <div class="highlight-box">
+          These permissions are used strictly to provide the extension’s intended recording features.
+        </div>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>6. Data Collection</h2>
+        <p>
+          EdgeCam Pro does not sell your personal data and does not use your recordings for advertising.
+        </p>
+        <p>
+          We do not automatically collect the content of your recordings, webcam feed, microphone feed, or browsing content on external servers.
+        </p>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>7. Bug Report Mode</h2>
+        <p>
+          If Bug Report Mode is enabled, the extension may collect additional diagnostic information locally,
+          including console errors, browser version, page URL, and timestamps.
+        </p>
+        <p>
+          This information remains local unless you export or share it.
+        </p>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>8. Third-Party Integrations</h2>
+        <p>
+          If integrations such as Google Drive, Dropbox, OneDrive, or YouTube are used in the future,
+          those services will operate under their own privacy policies and terms.
+        </p>
+        <p>
+          You are responsible for reviewing and accepting those third-party terms before use.
+        </p>
+      </section>
+
+      <section class="section-card reveal" id="security">
+        <h2>9. Security</h2>
+        <p>
+          We aim to keep locally stored recordings and configuration data protected within the browser environment.
+          However, you are responsible for the security of your device, user account, and browser profile.
+        </p>
+        <div class="highlight-box highlight-warning">
+          If multiple people use the same browser profile on the same device, recordings stored locally may be accessible to them.
+        </div>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>10. Children’s Privacy</h2>
+        <p>
+          EdgeCam Pro is not intended for children under the age of 13, and we do not knowingly collect personal data from children.
+        </p>
+      </section>
+
+      <section class="section-card reveal">
+        <h2>11. Policy Updates</h2>
+        <p>
+          We may update this Privacy Policy from time to time. If updates are made, the revised version will be published on this page.
+        </p>
+      </section>
+
+      <section class="section-card reveal" id="contact">
+        <h2>12. Contact</h2>
+        <p>
+          If you have any questions about this Privacy Policy or about how EdgeCam Pro handles data,
+          contact us at:
+        </p>
+        <p>
+          <a href="mailto:edgecamprosupport@gmail.com" style="color:#9fd0ff;font-weight:600;">edgecamprosupport@gmail.com</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2024 EdgeCam Pro. All rights reserved.</p>
+      <p>
+        Need help? Visit the
+        <a href="support.html">Support Page</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById('progressBar');
+
+    function updateProgressBar() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    }
+
+    window.addEventListener('scroll', updateProgressBar);
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    reveals.forEach(section => observer.observe(section));
+
+    updateProgressBar();
+  </script>
+</body>
+</html>
